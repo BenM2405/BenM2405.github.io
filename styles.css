@@ -1,0 +1,63 @@
+@keyframes lavaLamp {
+    0% {
+        background-color: #0f0c29;
+        /* Start color */
+    }
+
+    50% {
+        background-color: #302b63;
+        /* Middle color */
+    }
+
+    100% {
+        background-color: #24243e;
+        /* End color */
+    }
+}
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* Prevent horizontal scrollbars */
+    animation: lavaLamp 10s infinite alternate;
+    /* Adjust duration and timing as needed */
+}
+.container {
+    text-align: center;
+    margin-top: 50px;
+    position: relative;
+    min-height: 400px;
+}
+
+.magic-ball {
+    width: 550px;
+    height: 400px;
+    background-size: cover;
+    display: inline-block;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.button-container {
+    position: absolute;
+    bottom: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.text-container {
+    position: absolute;
+    bottom: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#answer {
+    margin-top: 100px;
+    height: 100px;
+    overflow-y: auto;
+}

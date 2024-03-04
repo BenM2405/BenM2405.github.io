@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+    p {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 70px;
+    }
+
+    button {
+        font-family: verdana;
+    }
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic 8 Ball</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Magic 8 Ball</h1>
+        <div class="magic-ball"></div>
+        <div class="text-container">
+            <input type="text" id="question" placeholder="Ask your question...">
+        </div>
+        <p id="answer"></p>
+        <div class="button-container">
+        <button onclick="shakeMagic8Ball()" class="magicbutton">Shake</button>
+        </div>
+        
+    </div>
+    <script src="script.js"></script>
+<ul>
+    <li><button onclick="window.location.href='index.html'"
+            style="position: absolute; top: 20px; left: 20px;">Home</button></li>
+</ul>
+</body>
+</html>
