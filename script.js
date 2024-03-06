@@ -23,16 +23,15 @@ function shakeMagic8Ball() {
     ];
 
     const question = document.getElementById("question").value.trim();
-
-
     if (question === "") {
         document.getElementById("answer").innerText = "You didn't ask anything.";
         return; 
     }
 
+    const magicBall = document.querySelector(".magic-ball img");
+    magicBall.classList.add("shake-animation");
 
-    const delay = Math.floor(Math.random() * (5000 - 3000 + 1)) + 3000;
-
+    const delay = Math.floor(Math.random() * (5000 - 2000 + 1)) + 2000;
     const intervalId = setInterval(() => {
         const currentDots = document.getElementById("answer").innerText;
         if (currentDots.length >= 3) {
@@ -44,6 +43,7 @@ function shakeMagic8Ball() {
 
     setTimeout(() => {
         clearInterval(intervalId);
+        magicBall.classList.remove("shake-animation");
         const randomIndex = Math.floor(Math.random() * answers.length);
         const answer = answers[randomIndex];
         document.getElementById("answer").innerText = answer;

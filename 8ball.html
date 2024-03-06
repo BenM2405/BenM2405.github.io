@@ -5,21 +5,35 @@
     p {
         font-family: 'Courier New', Courier, monospace;
         font-size: 70px;
+        color: white;
     }
 
     button {
         font-family: verdana;
     }
+
+    h1 {
+        font-family: verdana;
+        color: white;
+    }
+
+    .magic-ball img {
+        max-width: 100%;
+        height: auto;
+    }
+
 </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magic 8 Ball</title>
+    <title>BM Magic 8 Ball</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <h1>Magic 8 Ball</h1>
-        <div class="magic-ball"></div>
+        <div class="magic-ball">
+            <img src="8ball.png" alt="Magic8Ball">
+        </div>
         <div class="text-container">
             <input type="text" id="question" placeholder="Ask your question...">
         </div>

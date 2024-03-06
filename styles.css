@@ -1,27 +1,29 @@
+/* Animation Stuff */
 @keyframes lavaLamp {
-    0% {
-        background-color: #0f0c29;
-        /* Start color */
-    }
-
-    50% {
-        background-color: #302b63;
-        /* Middle color */
-    }
-
-    100% {
-        background-color: #24243e;
-        /* End color */
-    }
+    0% { background-color: #0f0c29;}
+    50% { background-color: #302b63;}
+    100% { background-color: #24243e;}
 }
+@keyframes shake {
+    0% {transform: translateX(0);}
+    25% {transform: translateX(-5px);}
+    50% {transform: translateX(5px);}
+    75% {transform: translateX(-5px);}
+    100% {transform: translateX(0);}
+}
+
+.shake-animation {
+    animation: shake 0.5s ease-in-out;
+}
+
 body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    /* Prevent horizontal scrollbars */
     animation: lavaLamp 10s infinite alternate;
-    /* Adjust duration and timing as needed */
 }
+
+/* Non-animation, style stuff */
 .container {
     text-align: center;
     margin-top: 50px;
@@ -51,10 +53,17 @@ button {
 }
 
 .text-container {
+    width: 20%;
     position: absolute;
     bottom: 200px;
     left: 50%;
     transform: translateX(-50%);
+}
+#question {
+    width: 100%;
+    height: 100%;
+    font-size: 24px;
+    font-family: verdana;
 }
 #answer {
     margin-top: 100px;
