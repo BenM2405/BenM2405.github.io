@@ -1,0 +1,68 @@
+.falling-letters{
+    position: absolute;
+}
+
+.letter {
+    font-family: 'Trebuchet MS';
+    font-size: 40px;
+    color: black;
+    animation: fall 1s;
+    margin: 0 auto;
+}
+
+div {
+    font-family: 'Trebuchet MS';
+    top: 40px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+body {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+    text-align: center;
+}
+
+.games {
+    font-family: 'Trebuchet MS';
+    font-size: 20px;
+    left: 250px;
+    width: 300px;
+    border: 2px solid black;
+    border-radius: 25px;
+    background: rgb(87, 87, 87);
+    padding: 10px;
+    
+}
+
+
+.midtext {
+    font-family: 'Trebuchet MS';
+    top: 70px;
+}
+
+a.linkedin {
+    font-family: 'Trebuchet MS';
+    text-align: center; 
+    display: block; 
+    margin: 40 auto;
+}
+
+h2 {
+    font-family: 'Trebuchet MS';
+    text-align: left;
+    position: absolute;
+    margin: 300px 0 0 20px;
+    left: 0;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-20vh);
+    }
+    100% {
+        transform: translateY(0.03vh);
+    }
+}
