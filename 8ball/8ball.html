@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+    p {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 70px;
+        color: white;
+    }
+
+    button {
+        font-family: verdana;
+    }
+
+    h1 {
+        font-family: verdana;
+        color: white;
+    }
+
+    .magic-ball img {
+        max-width: 100%;
+        height: auto;
+    }
+
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BM Magic 8 Ball</title>
+    <link rel="stylesheet" href="styleball.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Magic 8 Ball</h1>
+        <div class="magic-ball">
+            <img src="8ball.png" alt="Magic8Ball">
+        </div>
+        <div class="text-container">
+            <input type="text" id="question" placeholder="Ask your question...">
+        </div>
+        <p id="answer"></p>
+        <div class="button-container">
+        <button onclick="shakeMagic8Ball()" class="magicbutton">Shake</button>
+        </div>
+        
+    </div>
+    <script src="scriptball.js"></script>
+<ul>
+    <li><button onclick="window.location.href='/index.html'"
+            style="position: absolute; top: 20px; left: 20px;">Home</button></li>
+</ul>
+</body>
+</html>
