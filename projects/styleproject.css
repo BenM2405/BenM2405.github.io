@@ -1,0 +1,52 @@
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+button {
+    font-size: 20px;
+    font-family: 'Trebuchet MS';
+    padding: 15px 30px;
+    background-color: transparent;
+    color: white;
+}
+
+li {
+    margin: 0;
+}
+
+h2 {
+    font-family: 'Trebuchet MS';
+    text-align: center;
+    margin: 300px 0 0 0;
+}
+
+
+.games {
+    text-align: center;
+    font-family: 'Trebuchet MS';
+    font-size: 20px;
+    padding: 10px;
+    animation: fadein 2s;
+    text-decoration: none;
+}
+
+.head {
+    text-align: center;
+    position: absolute;
+}
+
+.header {
+    text-align: center;
+}
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

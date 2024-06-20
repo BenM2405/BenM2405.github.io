@@ -1,0 +1,72 @@
+/* Animation Stuff */
+@keyframes lavaLamp {
+    0% { background-color: #0f0c29;}
+    50% { background-color: #302b63;}
+    100% { background-color: #24243e;}
+}
+@keyframes shake {
+    0% {transform: translateX(0);}
+    25% {transform: translateX(-5px);}
+    50% {transform: translateX(5px);}
+    75% {transform: translateX(-5px);}
+    100% {transform: translateX(0);}
+}
+
+.shake-animation {
+    animation: shake 0.5s ease-in-out;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    animation: lavaLamp 10s infinite alternate;
+}
+
+/* Non-animation, style stuff */
+.container {
+    text-align: center;
+    margin-top: 50px;
+    position: relative;
+    min-height: 400px;
+}
+
+.magic-ball {
+    width: 550px;
+    height: 400px;
+    background-size: cover;
+    display: inline-block;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.button-container {
+    position: absolute;
+    bottom: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.text-container {
+    width: 20%;
+    position: absolute;
+    bottom: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#question {
+    width: 100%;
+    height: 100%;
+    font-size: 24px;
+    font-family: verdana;
+}
+#answer {
+    margin-top: 100px;
+    height: 100px;
+    overflow-y: auto;
+}

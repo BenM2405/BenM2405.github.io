@@ -1,12 +1,50 @@
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0 0 0;
+    padding-top: 50px;
+    text-align: center;
+    gap: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+li {
+    margin: 0;
+}
+
+button {
+    font-size: 20px;
+    font-family: 'Trebuchet MS';
+    padding: 15px 30px;
+    background-color: transparent;
+    color: white;
+}
+
+
 .falling-letters{
     position: absolute;
+    text-align: center;
+    font-family: 'Trebuchet MS';
+    top: 10%;
 }
 
 .letter {
-    font-family: 'Trebuchet MS';
-    font-size: 40px;
-    color: black;
-    animation: fall 1s;
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+}
+
+.circular-img {
+    display: block;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
     margin: 0 auto;
 }
 
@@ -25,22 +63,13 @@ body {
     text-align: center;
 }
 
-.games {
-    font-family: 'Trebuchet MS';
-    font-size: 20px;
-    left: 250px;
-    width: 300px;
-    border: 2px solid black;
-    border-radius: 25px;
-    background: rgb(87, 87, 87);
-    padding: 10px;
-    
-}
-
 
 .midtext {
     font-family: 'Trebuchet MS';
     top: 70px;
+    display: inline;
+    padding: 100px;
+    margin: 0 auto;
 }
 
 a.linkedin {
@@ -48,21 +77,9 @@ a.linkedin {
     text-align: center; 
     display: block; 
     margin: 40 auto;
+    text-decoration: none;
+    
 }
-
-h2 {
-    font-family: 'Trebuchet MS';
-    text-align: left;
-    position: absolute;
-    margin: 300px 0 0 20px;
-    left: 0;
-}
-
-@keyframes fall {
-    0% {
-        transform: translateY(-20vh);
-    }
-    100% {
-        transform: translateY(0.03vh);
-    }
+.linkedin:hover {
+    text-decoration: underline;
 }

@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 250px;
+}
+
+button {
+    width: 300px;
+    height: 300px;
+    margin: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+button img {
+    max-width: 100%;
+    max-height: 100%;
+}
