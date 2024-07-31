@@ -1,0 +1,68 @@
+/* Hey it's Ben hope ur doing well */
+
+/* Formatting */
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    font-family: Verdana;
+    color: #B14E52;
+}
+.top {
+    margin: auto;
+    width: 80%;
+    border: 4px solid #2e2b2b;
+    padding: 12px;
+    border-radius: 20px;
+    background-color: #2e2b2b;
+}
+
+.container {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    max-width: 50%;
+    border: 4px solid #2e2b2b;
+    padding: 15px;
+    border-radius: 20px;
+    background-color: #2e2b2b;
+}
+
+.image {
+    border-radius: 50%;
+    max-width: 300px;
+    max-height: 300px;
+    display: block;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 10px;
+}
+
+.button {
+    max-width: 75px;
+    max-height: 75px;
+    display: block;
+}
+
+/* Text */
+name {
+    font-size: 20px;
+}
+
+jumbo {
+    font-size: 32px;
+    display: block;
+    text-align: center;
+}
+
+p {
+    color: white;
+}
+
