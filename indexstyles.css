@@ -104,6 +104,44 @@ p {
     color: white;
 }
 
+/* Size Adjustment */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .image {
+        max-width: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 12px;
+    }
+
+    .container {
+        flex-direction: column;
+        padding: 5px;
+    }
+
+    .image {
+        max-width: 100px;
+    }
+
+    .button-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
 /* Animation */
 .star-container {
     position: absolute;
