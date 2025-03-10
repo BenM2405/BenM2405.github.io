@@ -1,6 +1,6 @@
 /* Hey there it's Ben! hope ur doing well */
 
-/* Formatting */
+/* Base Properties */
 body {
     display: flex;
     flex-direction: column;
@@ -9,6 +9,22 @@ body {
     font-family: Verdana;
     color: #FFFFFF;
 }
+
+img {
+    user-drag: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    color: #aaa;
+    width: auto;
+}
+
+/* New Formatting */
 
 .container {
     display: inline-flex;
@@ -25,13 +41,6 @@ body {
     border-radius: 4px;
     background-color: #2e2b2b;
     justify-content: space-between;
-    max-width: 500px;
-}
-
-.boxy {
-    background-color: #2e2b2b;
-    border: 10px solid #2e2b2b;
-    border-radius: 10px;
     max-width: 500px;
 }
 
@@ -65,9 +74,16 @@ body {
 
 .projects {
     margin-top: 50px;
-    display: inline-flex;
-    justify-content: space-evenly;
+    display: flex;
     align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.projimg {
+    border: 10px solid #2e2b2b;
+    border-radius: 4px;
+    max-width: 300px;
 }
 
 /* Text */
