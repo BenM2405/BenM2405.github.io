@@ -104,7 +104,7 @@ footer {
     margin: 0 auto;
 }
 
-#submit-button, #start-game {
+#submit-button, #start-game, #freeplay-game {
     margin: 10px;
     padding: 10px 20px;
     font-size: 16px;

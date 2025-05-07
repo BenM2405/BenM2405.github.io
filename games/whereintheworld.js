@@ -4,6 +4,7 @@ let currentCountry = null;
 let hints = [];
 let hintIndex = 0;
 let guessCount = 0;
+let isFreePlay = false;
 
 const populationIcons = {
     'under 1M': 'img/pop_small.svg',
@@ -29,6 +30,7 @@ const suggestionsBox = document.getElementById('suggestions');
 
 // Welcome Screen Check
 async function initGame() {
+    if (isFreePlay) return;
     await fetchCountries();
     pickCountry();
     generateHints();
@@ -40,6 +42,9 @@ async function initGame() {
 
     const today = new Date().toISOString().split("T")[0];
     const saved = JSON.parse(localStorage.getItem('WorldGameState'));
+    if (saved && saved.date !== today) {
+        localStorage.removeItem('WorldGameState');
+    }
     const alreadyPlayed = localStorage.getItem('lastPlayed') === today;
 
     if (saved?.guesses?.length > 0) {
@@ -72,6 +77,7 @@ async function initGame() {
             submitButton.style.display = 'inline-block';
 
             feedback.textContent = `Welcome back! You’ve made ${guessCount} guess${guessCount !== 1 ? 'es' : ''} so far.`;
+            toggleFreePlayButton(false);
         }
 
         return;
@@ -194,6 +200,8 @@ async function startGame() {
     submitButton.style.display = 'inline-block';
     startGameButton.disabled = true;
     startGameButton.style.display = 'none';
+
+    toggleFreePlayButton(false);
     
     await fetchCountries();
     pickCountry();
@@ -216,6 +224,46 @@ async function startGame() {
     updateScoreboard();
     feedback.textContent = '';
     guessInput.value = '';
+}
+
+async function startFreePlay() {
+    isFreePlay = true;
+    document.getElementById('freeplay-game').disabled = true;
+    document.getElementById('freeplay-game').style.display = 'none';
+
+    document.getElementById('hint-area').innerHTML = '';
+    document.getElementById('guess-history').innerHTML = '';
+    feedback.textContent = '';
+    suggestionsBox.innerHTML = '';
+    ghostText.textContent = '';
+    guessInput.disabled = false;
+    guessInput.style.display = 'inline-block';
+    submitButton.disabled = false;
+    submitButton.style.display = 'inline-block';
+    startGameButton.disabled = true;
+    startGameButton.style.display = 'none';
+
+    await fetchCountries();
+    currentCountry = countries[Math.floor(Math.random() * countries.length)]; //random for freeplay
+    generateHints();
+
+    const startMsg = document.getElementById('start-msg');
+    if (startMsg) startMsg.remove();
+
+    hintIndex = 0;
+    guessCount = 0;
+
+    addHint(hintIndex);
+    hintIndex++;
+    
+    updateScoreboard();
+    feedback.textContent = 'Free Play Mode Activated!';
+    guessInput.value = '';
+
+    const alreadySolved = localStorage.getItem('lastPlayed') === new Date().toISOString().split("T")[0];
+    if (!alreadySolved) {
+        localStorage.removeItem('WorldGameState');
+    }
 }
 
 function addHint(index = hintIndex) {
@@ -281,18 +329,22 @@ function handleGuess() {
         localStorage.setItem('lastPlayed', new Date().toISOString().split("T")[0]);
 
         // Save win state
-        localStorage.setItem('WorldGameState', JSON.stringify({
+        if (!isFreePlay) {
+            localStorage.setItem('WorldGameState', JSON.stringify({
             date: new Date().toISOString().split("T")[0],
             guesses: [...(JSON.parse(localStorage.getItem("WorldGameState"))?.guesses || []), guess],
             hintIndex: hintIndex,
             solved: true
         }));
+        }
 
         confetti({
             particleCount: 150,
             spread: 70,
             origin: { y: 0.6 }
         });
+        toggleFreePlayButton(true);
+
     } else if (guessCount < 5) {
         feedback.textContent = "Incorrect! Try again!";
         feedback.style.color = 'red';
@@ -308,8 +360,10 @@ function handleGuess() {
             solved: false
         };
 
-        localStorage.setItem('WorldGameState', JSON.stringify(gameState));
-        updateGuessHistory(newGuesses);
+        if (!isFreePlay) {
+            localStorage.setItem('WorldGameState', JSON.stringify(gameState));
+            updateGuessHistory(newGuesses);
+        }
 
     } else {
         feedback.textContent = "😢 Out of guesses! The answer was " + currentCountry.name.common + ".";
@@ -328,16 +382,26 @@ function handleGuess() {
             hintIndex: hintIndex,
             solved: false
         };
-        localStorage.setItem('WorldGameState', JSON.stringify(gameState));
+        if (!isFreePlay) {
+            localStorage.setItem('WorldGameState', JSON.stringify(gameState));
+            updateGuessHistory(gameState.guesses);
+        }
     }
     guessInput.value = '';
     ghostInput.value = '';
     console.log("handleGuess called");
 }
 
+//helpers
 function updateGuessHistory(guesses) {
     const guessHistoryBox = document.getElementById('guess-history');
     guessHistoryBox.innerHTML = '<strong>Past Guesses:</strong><br>' + guesses.map(g => `• ${g}`).join('<br>');
+}
+
+function toggleFreePlayButton(show) {
+    const freePlayButton = document.getElementById('freeplay-game');
+    freePlayButton.style.display = show ? 'inline-block' : 'none';
+    freePlayButton.disabled = !show;
 }
 
 
@@ -361,4 +425,6 @@ document.addEventListener('click', function(event) {
     }
 });
 startGameButton.addEventListener('click', startGame);
+document.getElementById('freeplay-game').addEventListener('click', startFreePlay);
+
 
