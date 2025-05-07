@@ -89,6 +89,27 @@ footer {
     max-width: 300px;
 }
 
+.navbar {
+    background-color: rgba(0, 0, 0, 0.8); /* translucent black */
+    padding: 10px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
 /* Text */
 name {
     font-size: 20px;
