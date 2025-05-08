@@ -262,10 +262,6 @@ async function startFreePlay() {
     feedback.textContent = 'Free Play Mode Activated!';
     guessInput.value = '';
 
-    const alreadySolved = localStorage.setItem('lastPlayed', dailySeed());;
-    if (!alreadySolved) {
-        localStorage.removeItem('WorldGameState');
-    }
 }
 
 function addHint(index = hintIndex) {
