@@ -15,14 +15,11 @@ const populationIcons = {
 
 // Elements in HTML
 const hintArea = document.getElementById('current-hint');
-// const guessInput = document.getElementById('guess-input');
 const submitButton = document.getElementById('submit-guess');
 const feedback = document.getElementById('feedback');
 const scoreboard = document.getElementById('scoreboard');
 const startGameButton = document.getElementById('start-game');
-// const suggestionsBox = document.getElementById('suggestions');
 const ghostInput = document.getElementById('ghost-input');
-
 const guessInput = document.getElementById('guess-input');
 const ghostText = document.getElementById('ghost-text');
 const suggestionsBox = document.getElementById('suggestions');
@@ -31,8 +28,18 @@ const suggestionsBox = document.getElementById('suggestions');
 // Welcome Screen Check
 async function initGame() {
     if (isFreePlay) return;
+
+    const todaySeed = dailySeed();
+    let saved = JSON.parse(localStorage.getItem('WorldGameState'));
+
+    if (saved && saved.seed !== todaySeed) {
+        localStorage.removeItem('WorldGameState');
+        localStorage.removeItem('lastPlayed');
+        saved = null;
+    }
+
     await fetchCountries();
-    pickCountry();
+    currentCountry = countries[todaySeed % countries.length];
     generateHints();
     
     submitButton.disabled = true;
@@ -40,17 +47,12 @@ async function initGame() {
     guessInput.disabled = true;
     guessInput.style.display = 'none';
 
-    const today = new Date().toISOString().split("T")[0];
-    const saved = JSON.parse(localStorage.getItem('WorldGameState'));
-    if (saved && saved.date !== today) {
-        localStorage.removeItem('WorldGameState');
-    }
-    const alreadyPlayed = localStorage.getItem('lastPlayed') === today;
+    const alreadyPlayed = Number(localStorage.getItem('lastPlayed')) === todaySeed;
 
     if (saved?.guesses?.length > 0) {
         updateGuessHistory(saved.guesses);
     }
-    if (saved?.date === today) {
+    if (saved?.seed === todaySeed) {
         hintIndex = saved.hintIndex || 0;
         guessCount = saved.guesses?.length || 0;
 
@@ -105,13 +107,13 @@ function dailySeed(){
     const year = now.getFullYear();
     const month = now.getMonth() + 1;
     const day = now.getDate();
-    const seed = year * 66536 + month * 256 + day;
-    const index = seed % countries.length;
-    return index;
+
+    const seed = year * 66535 + month * 255 + (day);
+    return seed
 }
 
-function pickCountry() {
-    currentCountry = countries[dailySeed()];
+function pickCountry(seed) {
+    currentCountry = countries[seed % countries.length];
 }
 
 function generateHints() {
@@ -204,7 +206,7 @@ async function startGame() {
     toggleFreePlayButton(false);
     
     await fetchCountries();
-    pickCountry();
+    pickCountry(dailySeed());
     generateHints();
 
     const startMsg = document.getElementById('start-msg');
@@ -260,7 +262,7 @@ async function startFreePlay() {
     feedback.textContent = 'Free Play Mode Activated!';
     guessInput.value = '';
 
-    const alreadySolved = localStorage.getItem('lastPlayed') === new Date().toISOString().split("T")[0];
+    const alreadySolved = localStorage.setItem('lastPlayed', dailySeed());;
     if (!alreadySolved) {
         localStorage.removeItem('WorldGameState');
     }
@@ -320,22 +322,25 @@ function handleGuess() {
     updateScoreboard();
 
     if (guess === answer) {
+        const prevState = JSON.parse(localStorage.getItem('WorldGameState')) || {};
+
         feedback.textContent = "Correct! It was " + currentCountry.name.common + "!";
         feedback.style.color = 'green';
         guessInput.disabled = true;
         submitButton.disabled = true;
         startGameButton.disabled = true;
 
-        localStorage.setItem('lastPlayed', new Date().toISOString().split("T")[0]);
+        localStorage.setItem('lastPlayed', dailySeed());
 
         // Save win state
         if (!isFreePlay) {
             localStorage.setItem('WorldGameState', JSON.stringify({
-            date: new Date().toISOString().split("T")[0],
-            guesses: [...(JSON.parse(localStorage.getItem("WorldGameState"))?.guesses || []), guess],
-            hintIndex: hintIndex,
-            solved: true
-        }));
+                date: new Date().toISOString().split("T")[0],
+                seed: dailySeed(),
+                guesses: [...(prevState.guesses || []), guess],
+                hintIndex: hintIndex,
+                solved: true
+            }));
         }
 
         confetti({
@@ -355,6 +360,7 @@ function handleGuess() {
         const newGuesses = [...(prevState.guesses || []), guess];
         const gameState = {
             date: new Date().toISOString().split("T")[0],
+            seed: dailySeed(),
             guesses: [...(prevState.guesses || []), guess],
             hintIndex: hintIndex,
             solved: false
@@ -372,12 +378,12 @@ function handleGuess() {
         submitButton.disabled = true;
         startGameButton.disabled = true;
 
-        localStorage.setItem('lastPlayed', new Date().toISOString().split("T")[0]);
-
+        localStorage.setItem('lastPlayed', dailySeed());
         // Save final state
         const prevState = JSON.parse(localStorage.getItem("WorldGameState")) || {};
         const gameState = {
             date: new Date().toISOString().split("T")[0],
+            seed: dailySeed(),
             guesses: [...(prevState.guesses || []), guess],
             hintIndex: hintIndex,
             solved: false
