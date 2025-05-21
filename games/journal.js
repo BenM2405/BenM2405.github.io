@@ -216,6 +216,37 @@ let lineWidth = 5;
 let startX;
 let startY;
 
+function startDrawing(x, y) {
+    isPainting = true;
+    const rect = canvas.getBoundingClientRect();
+    const offsetX = x - rect.left;
+    const offsetY = y - rect.top;
+    ctx.beginPath();
+    ctx.moveTo(offsetX, offsetY);
+
+    undoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
+    if (undoStack.length > 20) undoStack.shift();
+}
+
+function drawTouch(x, y) {
+    if (!isPainting) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const offsetX = x - rect.left;
+    const offsetY = y - rect.top;
+
+    ctx.lineTo(offsetX, offsetY);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(offsetX, offsetY);
+}
+
+function endDrawing() {
+    isPainting = false;
+    ctx.stroke();
+    ctx.beginPath();
+}
+
 toolbar.addEventListener('click', e => {
     if (e.target.id === 'clear') {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -252,3 +283,29 @@ canvas.addEventListener('mouseup', e => {
 });
 
 canvas.addEventListener('mousemove', draw);
+
+//touchscreen nerds haha
+canvas.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    startDrawing(touch.clientX, touch.clientY);
+}, {passive: false});
+
+canvas.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    drawTouch(touch.clientX, touch.clientY);
+}, {passive: false});
+
+canvas.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    endDrawing();
+});
+
+function scaleCanvasForRetina() {
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = canvas.offsetWidth * dpr;
+    canvas.height = canvas.offsetHeight * dpr;
+    ctx.scale(dpr, dpr);
+}
+scaleCanvasForRetina();
