@@ -1,5 +1,5 @@
 // Global Variables
-
+let undoStack = [];
 
 
 // HTML elements
@@ -143,6 +143,12 @@ revealBtn.addEventListener('click', () => {
     }
     document.querySelector('.container').style.display = 'block';
 });
+document.getElementById('undo').addEventListener('click', () => {
+    if (undoStack.length > 0){
+        const prevState = undoStack.pop();
+        ctx.putImageData(prevState, 0, 0);
+    }
+});
 
 // Journal Doodle
 function draw(e) {
@@ -184,6 +190,9 @@ toolbar.addEventListener('change', e => {
 
 canvas.addEventListener('mousedown', (e) => {
     isPainting = true;
+
+    undoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
+    if (undoStack.length > 20) undoStack.shift();
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;

@@ -7,7 +7,31 @@ html, body {
     color: #FFFFFF;
     overflow-x: hidden;
     overflow-y: auto;
-    background-color: #7EBCE6;
+    background: linear-gradient(-45deg, #7eBCe6, #4b346a, #6d2b5d, #50727c);
+    background-size: 400% 400%;
+    animation: gradientShift 20s ease infinite;
+}
+
+button {
+    background-color: #ffffffcc;
+    color: #333;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 8px;
+    margin: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+img {
+    border: 1px solid white;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+button:hover {
+    background-color: #eee;
 }
 
 .navbar {
@@ -36,16 +60,57 @@ html, body {
     background-color: white;
 }
 
+
 #toolbar {
     display: flex;
     flex-direction: column;
     padding: 5px;
 }
+
 textarea {
     resize: none;
+    width: 90%;
+    max-width: 600px;
+    padding: 1rem;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    color: #333;
+    background: #fefefecc;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+#entryDisplay > div {
+    display: block;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    padding: 1rem;
+    margin: 1rem auto;
+    text-align: left;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    width: 90%;
+    max-width: 600px;
 }
 
 .container {
     display: none;
     margin-top: 1rem;
+}
+
+section.container {
+    margin-bottom: 2rem;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
