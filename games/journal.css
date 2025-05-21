@@ -1,0 +1,51 @@
+html, body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+    color: #FFFFFF;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #7EBCE6;
+}
+
+.navbar {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: Verdana;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+.drawing-board {
+    background-color: white;
+}
+
+#toolbar {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+textarea {
+    resize: none;
+}
+
+.container {
+    display: none;
+    margin-top: 1rem;
+}

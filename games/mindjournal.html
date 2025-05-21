@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="journal.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mind Journal</title>
+    <script defer src="journal.js"></script>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="../index.html">Home</a>
+        <a href="../games.html">Games</a>
+    </nav>
+    
+    <textarea id="entry" name="entry" rows="4" cols="50"></textarea>
+    <button id="revealDoodle">Next: Add a Doodle</button>
+    <section class="container">
+        <div id="toolbar">
+            <h1>Draw Here!</h1>
+            <label for="stroke">Stroke</label>
+            <input id="stroke" name="stroke" type="color">
+            <label for="lineWidth">Line Width</label>
+            <input id="lineWidth" name="lineWidth" type="number" value="5">
+            <button id="clear">Clear</button>
+        </div>
+        <div class="drawing-board">
+            <canvas id="drawing-board" width="200" height="200"></canvas>
+        </div>
+        
+    </section>
+    <button id="save" name="save">Save</button>
+    <div id="entryDisplay"></div>
+</body>
+</html>

@@ -11,7 +11,7 @@ html, body {
 }
 
 .navbar {
-    background-color: rgba(0, 0, 0, 0.8); /* translucent black */
+    background-color: rgba(0, 0, 0, 0.8);
     padding: 10px;
     text-align: center;
     position: sticky;
