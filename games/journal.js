@@ -301,11 +301,3 @@ canvas.addEventListener('touchend', (e) => {
     e.preventDefault();
     endDrawing();
 });
-
-function scaleCanvasForRetina() {
-    const dpr = window.devicePixelRatio || 1;
-    canvas.width = canvas.offsetWidth * dpr;
-    canvas.height = canvas.offsetHeight * dpr;
-    ctx.scale(dpr, dpr);
-}
-scaleCanvasForRetina();
