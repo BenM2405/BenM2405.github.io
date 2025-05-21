@@ -1,169 +1,154 @@
 /* Hey there it's Ben! hope ur doing well */
 
-/* Base Properties */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-family: Verdana;
-    color: #FFFFFF;
-    overflow-x: hidden;
-    overflow-y: auto;
-    background-color: black;
-}
-
-img {
-    user-drag: none;
-    -webkit-user-drag: none;
-    pointer-events: none;
-}
-
-footer {
-    text-align: center;
-    padding: 10px;
-    font-size: 14px;
-    color: #aaa;
-    width: auto;
-}
-
-/* New Formatting */
-
-.container {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    gap: 20px;
-}
-
-.box {
-    max-width: 50%;
-    border: 4px solid #2e2b2b;
-    padding: 15px;
-    border-radius: 4px;
-    background-color: #2e2b2b;
-    justify-content: space-between;
-    max-width: 500px;
-}
-
-.centerbox {
-    background-color: #2e2b2b;
-    border: 10px solid #2e2b2b;
-    border-radius: 10px;
-    margin-top: 20px;
-    max-width: 200px;
-}
-
-.image {
-    border-radius: 40%;
-    max-width: 200px;
-    max-height: 200px;
-    justify-content: space-evenly;
-}
-
-.button-container {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    margin-top: 10px;
-}
-
-.button {
-    max-width: 50px;
-    max-height: 50px;
-    display: block;
-}
-
-.projects {
-    margin-top: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-.projimg {
-    border: 10px solid #2e2b2b;
-    border-radius: 4px;
-    max-width: 300px;
+    background-color: #0f0f0f;
+    transition: background-color 0.2s ease-out;
+    font-family: 'Quicksand', sans-serif;
+    color: #f3f3f3;
+    line-height: 1.6;
+    padding: 0 1rem;
 }
 
 .navbar {
-    background-color: rgba(0, 0, 0, 0.8); /* translucent black */
-    padding: 10px;
-    text-align: center;
     position: sticky;
-    top: 0;
-    z-index: 1000;
+    top: 1rem;
+    z-index: 100;
+    background-color: #1a1a1a;
+    padding: 10px;
+    font-family: Verdana;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    width: fit-content;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    margin: 0 auto;
 }
-
 .navbar a {
-    color: white;
-    margin: 0 15px;
+    color: #fff;
+    margin: 0 1rem;
     text-decoration: none;
     font-weight: bold;
-    font-size: 18px;
+    transition: color 0.2s;
 }
 
 .navbar a:hover {
     text-decoration: underline;
 }
 
-/* Text */
-name {
-    font-size: 20px;
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 3rem;
 }
 
-jumbo {
-    font-size: 32px;
+.image {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
 
+.intro-box {
+    max-width: 500px;
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+.intro-box h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.intro-box p {
+    color: #ddd;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.button {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.2s;
+}
+
+.button:hover {
+    transform: scale(1.15);
+}
+
+.projects {
+    margin: 4rem auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 1000px;
+}
+
+.project {
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    padding: 1.5rem;
+    flex: 1 1 300px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.3);
+}
+
+.project h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.project p {
+    color: #ccc;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+.project a {
+    color: #4caf50;
+    text-decoration: none;
+    margin-right: 0.5rem;
+}
+
+.project a:hover {
+    text-decoration: underline;
+}
+
+.projimg {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-top: 1rem;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+}
+
+footer {
     text-align: center;
+    font-size: 0.85rem;
+    color: #888;
+    margin: 3rem 0 1rem;
 }
 
-p {
-    color: white;
-}
-
-/* Size Adjustment */
-@media (max-width: 768px) {
-    body {
-        font-size: 14px;
-        padding: 10px;
-    }
-
-    .container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .image {
-        max-width: 150px;
-    }
-}
-
-@media (max-width: 480px) {
-    body {
-        font-size: 12px;
-    }
-
-    .container {
-        flex-direction: column;
-        padding: 5px;
-    }
-
-    .image {
-        max-width: 100px;
-    }
-
-    .button-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
-/* Animation */
 .star-container {
     position: absolute;
     width: 100%;
@@ -182,26 +167,33 @@ p {
     animation: sparkle 1.5s infinite alternate, twinkle 3s infinite ease-in-out;
 }
 
-
 @keyframes sparkle {
     0% {
-        transform: scale(0.5);
-        opacity: 0.5;
+    transform: scale(0.5);
+    opacity: 0.5;
     }
     100% {
-        transform: scale(1.5);
-        opacity: 1;
+    transform: scale(1.5);
+    opacity: 1;
     }
 }
 
 @keyframes twinkle {
-    0% {
-        opacity: 0.5;
+    0%, 100% {
+    opacity: 0.5;
     }
     50% {
-        opacity: 1;
+    opacity: 1;
     }
-    100% {
-        opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+    .container, .projects {
+    flex-direction: column;
+    align-items: center;
+    }
+
+    .intro-box {
+    padding: 1.5rem;
     }
 }

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Where In The World?</title>
-    <link rel="stylesheet" href="../games.css">
+    <link rel="stylesheet" href="witw.css">
     <script defer src="whereintheworld.js"></script>
 </head>
 <body>
@@ -17,32 +17,28 @@
     <h1 class="page-title">Where In The World?</h1>
 
     <div class="game-container">
-        <div id="hint-area" class="hint-area">
-            <p id="current-hint"></p>
-        </div>
-
-        <div class="input-area">
-            <div class="input-wrapper">
-                <div id="ghost-text" class="ghost-text"></div>
-                <input type="text" id="guess-input" placeholder="Enter your guess..." autocomplete="off"/>
-              </div>              
-            <div id='suggestions' class="suggestions-box"></div>
-            <button id="submit-guess">Submit Guess</button>
-        </div>
-        <div id="guess-history" class="guess-history"></div>
-        <div id="feedback" class="feedback">
-
-        </div>
-
-        <div class="control-buttons">
+        <div class="game-card">
+          <div class="input-wrapper">
+            <div id="ghost-text" class="ghost-text"></div>
+            <input type="text" id="guess-input" placeholder="Enter your guess..." autocomplete="off" />
+            <div id="guess-history" class="guess-history"></div>
+            <div id="suggestions" class="suggestions-box"></div>
+          </div>
+      
+          <div id="hint-area" class="hint-area"></div>
+      
+          <button id="submit-guess">Submit Guess</button>
+      
+          <div id="feedback" class="feedback"></div>
+      
+          <div class="control-buttons">
             <button id="start-game">Start New Game</button>
             <button id="freeplay-game">Free Play</button>
+          </div>
+      
+          <div id="scoreboard" class="scoreboard">Guesses: 0 | Hints used: 0</div>
         </div>
-
-        <div id="scoreboard" class="scoreboard">
-            Guesses: 0 | Hints used: 0
-        </div>
-    </div>
+      </div>      
 
     
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>

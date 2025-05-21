@@ -14,12 +14,11 @@ const populationIcons = {
 };
 
 // Elements in HTML
-const hintArea = document.getElementById('current-hint');
+const hintArea = document.getElementById('hint-area');
 const submitButton = document.getElementById('submit-guess');
 const feedback = document.getElementById('feedback');
 const scoreboard = document.getElementById('scoreboard');
 const startGameButton = document.getElementById('start-game');
-const ghostInput = document.getElementById('ghost-input');
 const guessInput = document.getElementById('guess-input');
 const ghostText = document.getElementById('ghost-text');
 const suggestionsBox = document.getElementById('suggestions');
@@ -167,10 +166,8 @@ guessInput.addEventListener('input', function(event) {
         .map(c => c.name.common)
         .filter(name => name.toLowerCase().startsWith(currentInput));
 
-    // Set ghost preview
     ghostText.textContent = matches.length > 0 ? matches[0] : '';
 
-    // Clear if nothing typed
     if (currentInput === '') {
         suggestionsBox.style.display = 'none';
         ghostText.textContent = '';
@@ -217,7 +214,6 @@ async function startGame() {
     hintIndex = 0;
     guessCount = 0;
 
-    // only add first hint if there's no saved state
     const saved = JSON.parse(localStorage.getItem("WorldGameState"));
     if (!saved || saved.date !== new Date().toISOString().split("T")[0]) {
         addHint(hintIndex);
@@ -324,12 +320,11 @@ function handleGuess() {
         feedback.style.color = 'green';
         guessInput.disabled = true;
         submitButton.disabled = true;
+        submitButton.style.display = 'none';
         startGameButton.disabled = true;
 
-        localStorage.setItem('lastPlayed', dailySeed());
-
-        // Save win state
         if (!isFreePlay) {
+            localStorage.setItem('lastPlayed', dailySeed());
             localStorage.setItem('WorldGameState', JSON.stringify({
                 date: new Date().toISOString().split("T")[0],
                 seed: dailySeed(),
@@ -372,10 +367,11 @@ function handleGuess() {
         feedback.style.color = 'red';
         guessInput.disabled = true;
         submitButton.disabled = true;
+        submitButton.style.display = 'none';
         startGameButton.disabled = true;
+        toggleFreePlayButton(true);
 
         localStorage.setItem('lastPlayed', dailySeed());
-        // Save final state
         const prevState = JSON.parse(localStorage.getItem("WorldGameState")) || {};
         const gameState = {
             date: new Date().toISOString().split("T")[0],
@@ -390,7 +386,6 @@ function handleGuess() {
         }
     }
     guessInput.value = '';
-    ghostInput.value = '';
     console.log("handleGuess called");
 }
 

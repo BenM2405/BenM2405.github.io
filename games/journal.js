@@ -1,6 +1,6 @@
 // Global Variables
 let undoStack = [];
-
+let selectedMood = null;
 
 // HTML elements
 const textEntry = document.getElementById('entry')
@@ -10,10 +10,16 @@ const canvas = document.getElementById('drawing-board');
 const toolbar = document.getElementById('toolbar');
 const ctx = canvas.getContext('2d');
 const revealBtn = document.getElementById('revealDoodle');
+const moodButtons = document.querySelectorAll('.mood-group button');
 
 // Main Functions
 function savePiece(){
     const text = textEntry.value;
+    if (!selectedMood) {
+        alert("Please select a mood before saving.")
+        return;
+    }
+
     if (text.trim() === '' || !confirm("Would you like to save?")){
         return;
     }
@@ -23,6 +29,8 @@ function savePiece(){
         date: new Date(), 
         entry: text
     };
+    info.mood = selectedMood;
+
 
     const blankCanvas = document.createElement('canvas');
     blankCanvas.width = canvas.width;
@@ -32,12 +40,14 @@ function savePiece(){
     if (userDoodle !== blankData) {
         info.doodle = userDoodle;
     }
-    for (let i = entries.length - 1; i >= 0; i--){
+    /* for (let i = entries.length - 1; i >= 0; i--){
         if (isSameDay(new Date(entries[i].date), new Date())) {
             alert("You've already journaled today, take some time to reflect :)")
             return;
         }
-    }
+    }*/
+
+    
     entries.push(info);
     localStorage.setItem('JournalEntries', JSON.stringify(entries));
     textEntry.value = '';
@@ -88,6 +98,10 @@ function displayEntries(){
             img.style.borderRadius = "6px";
             header.appendChild(img);
         }
+        const moodTag = document.createElement('span');
+        moodTag.textContent = `Mood: ${entry.mood || "Unknown"}`;
+        moodTag.style.fontWeight = "bold";
+        entryContainer.appendChild(moodTag);
 
         entryContainer.appendChild(header);
         entryContainer.appendChild(dispText);
@@ -100,6 +114,8 @@ function displayEntries(){
             deleteBtn.style.display = 
                 deleteBtn.style.display === 'none' ? 'inline-block' : 'none';
         });
+
+        
         deleteBtn.addEventListener('click', () => {
             if (!confirm('Are you sure you want to delete? You have to wait until the next day to create a new one...')){
                 return;
@@ -135,14 +151,42 @@ textEntry.addEventListener('keydown', e => {
         savePiece();
     }
 });
+
 window.addEventListener('DOMContentLoaded', displayEntries);
+document.getElementById('positive').addEventListener('click', () => {
+    selectedMood = "😊 Positive"
+});
+document.getElementById('neutral').addEventListener('click', () => {
+    selectedMood = "😐 Neutral"
+});
+document.getElementById('negative').addEventListener('click', () => {
+    selectedMood = "😢 Negative"
+});
+
+moodButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        moodButtons.forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        selectedMood = btn.textContent;
+    });
+});
+
 revealBtn.addEventListener('click', () => {
     if (textEntry.value.trim() === '') {
         alert("Please write something first!");
         return;
     }
-    document.querySelector('.container').style.display = 'block';
+    const container = document.querySelector('.container');
+    
+    if (container.style.display === 'block') {
+        container.style.display = 'none';
+        revealBtn.textContent = 'Add a Doodle';
+    } else {
+        container.style.display = 'block';
+        revealBtn.textContent = 'Close Doodle';
+    }
 });
+
 document.getElementById('undo').addEventListener('click', () => {
     if (undoStack.length > 0){
         const prevState = undoStack.pop();
