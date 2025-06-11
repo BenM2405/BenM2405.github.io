@@ -95,7 +95,19 @@ window.addEventListener('DOMContentLoaded', initGame);
 
 // Game Functions
 async function fetchCountries() {
-    const response = await fetch('https://restcountries.com/v3.1/all');
+    const neededFields = [
+        'name',
+        'region',
+        'capital',
+        'population',
+        'currencies',
+        'demonyms',
+        'independent'
+    ];
+
+    const url = `https://restcountries.com/v3.1/all?fields=${neededFields.join(',')}`;
+    const response = await fetch(url);
+
     const data = await response.json();
     countries = data.filter(c => c.independent); // save it
 }
