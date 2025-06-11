@@ -40,12 +40,12 @@ function savePiece(){
     if (userDoodle !== blankData) {
         info.doodle = userDoodle;
     }
-    /* for (let i = entries.length - 1; i >= 0; i--){
+    for (let i = entries.length - 1; i >= 0; i--){
         if (isSameDay(new Date(entries[i].date), new Date())) {
             alert("You've already journaled today, take some time to reflect :)")
             return;
         }
-    }*/
+    }
 
     
     entries.push(info);
